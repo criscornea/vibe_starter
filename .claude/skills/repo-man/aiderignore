@@ -1,12 +1,12 @@
-# Files that add no symbols to the repo map
+# Noise only: files with no symbols that can number in the hundreds.
+# Config and docs stay in the map as one line each, so Claude knows they exist.
 .claude/
-*.md
-*.txt
-*.json
 *.lock
-*.yaml
-*.yml
+package-lock.json
+pnpm-lock.yaml
+go.sum
 *.svg
-*.css
-.gitignore
-scripts/bootstrap.sh
+*.min.js
+*.map
+**/fixtures/
+**/translations/
