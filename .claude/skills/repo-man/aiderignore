@@ -1,0 +1,12 @@
+# Files that add no symbols to the repo map
+.claude/
+*.md
+*.txt
+*.json
+*.lock
+*.yaml
+*.yml
+*.svg
+*.css
+.gitignore
+scripts/bootstrap.sh

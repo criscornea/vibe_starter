@@ -1,0 +1,19 @@
+# Claude Code local state
+.claude/settings.local.json
+.claude/.stop-state
+
+# Aider (repo-man)
+.aider*
+
+# Secrets
+.env
+.env.*
+!.env.example
+
+# Common build output
+node_modules/
+vendor/
+dist/
+build/
+var/
+*.log
