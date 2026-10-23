@@ -22,7 +22,9 @@
 
 - Run the `repo-man` skill before exploring unfamiliar code. Open only the files the map points to.
 - Read file ranges, not whole large files. Do not re-read files you just edited.
-- Build/test output: errors only.
+- Build/test output: errors only. Formatting runs automatically after each edit; never fix style by hand.
+- context7: only for third-party library APIs you are unsure about (version-specific). Not for the standard library.
+- Playwright (if enabled): verify a UI milestone once at the end. Prefer snapshots over screenshots. Close the browser when done.
 - Subagents return the short report format their definition gives. No prose recaps.
 
 ## Conventions

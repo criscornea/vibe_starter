@@ -33,6 +33,13 @@ if command -v claude >/dev/null; then
   else claude plugin install caveman@caveman && ok "caveman plugin installed"; fi
 else warn "claude (Claude Code CLI)"; fi
 
+echo "Optional (per stack, /kickoff enables the matching plugin):"
+opt() { command -v "$1" >/dev/null && ok "$1" || echo "  opt   $1: $2"; }
+opt gopls "go install golang.org/x/tools/gopls@latest"
+opt typescript-language-server "npm install -g typescript-language-server typescript"
+opt intelephense "npm install -g intelephense"
+opt npx "install Node.js (needed by the Playwright plugin)"
+
 [[ -z "$target" ]] && exit 0
 
 echo "Project: $target"
