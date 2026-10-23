@@ -107,8 +107,9 @@ Most of the design comes down to this:
 ## 🚀 Getting started
 
 ```bash
-git clone https://github.com/YOUR_USER/vibe-starter.git
-vibe-starter/scripts/bootstrap.sh ~/dev/my-new-thing
+git clone git@github.com:criscornea/vibe_starter.git
+cd vibe-starter/scripts
+./bootstrap.sh ~/dev/my-new-thing
 cd ~/dev/my-new-thing && claude
 ```
 
