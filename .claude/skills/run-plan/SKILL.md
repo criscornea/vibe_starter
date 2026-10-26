@@ -1,6 +1,6 @@
 ---
 name: run-plan
-description: Execute PLAN.md phase by phase without user intervention - Sonnet implements, optional Opus review, local squash merge into main. Use for /run-plan or "start building", "continue the plan".
+description: Execute PLAN.md phase by phase, asking the user before each next phase - Sonnet implements, optional Opus review, local squash merge into main. Use for /run-plan or "start building", "continue the plan".
 ---
 You are the coordinator. Stay lean: never read source files or diffs yourself. You only read `PLAN.md`, run git commands, and delegate.
 
@@ -31,7 +31,10 @@ Loop over phases in order, skipping `Status: merged`:
    ```
    If a remote exists: `git push origin main` and `git push origin --delete <branch>`.
    Merge conflict: write `BLOCKED: merge conflict phase <n>` and stop.
+5. **Next-phase gate**: if unmerged phases remain, ask the user (AskUserQuestion, one question: "Phase <n> merged. Start Phase <n+1> <name>?"). Always ask, never skip.
+   - Yes: continue the loop.
+   - No: set `autopilot: off` in PLAN.md, commit `chore: pause autopilot`, push if a remote exists, and stop. `/run-plan` resumes later.
 
 Finish: when every phase is merged, set `autopilot: off`, commit `chore: plan complete`, push.
 
-Report to the user only at the end or when blocked: one line per phase (`P<n> merged|blocked, reviewed yes|no`).
+Report to the user at the end, when blocked, or when paused: one line per phase (`P<n> merged|blocked, reviewed yes|no`).

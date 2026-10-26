@@ -38,7 +38,8 @@ flowchart LR
     G -->|no| M[squash merge]
     G -->|yes, ask me| V[review<br/><sub>Opus</sub>]
     V --> M
-    M -->|next phase| I
+    M --> Q{next phase?<br/><sub>ask me</sub>}
+    Q -->|yes| I
 ```
 
 1. `/kickoff`: Claude asks me a few questions about the idea and the stack. Then the
@@ -48,8 +49,9 @@ flowchart LR
      checks, and pushes as it goes.
    - If a phase looks risky (auth, migrations, a big diff), Claude asks me whether Opus
      should review it. Otherwise it just merges.
-   - The branch gets squash-merged into `main`, then on to the next phase.
-3. A Stop hook keeps the loop going until the plan is done. It stops if something is
+   - The branch gets squash-merged into `main`. Then Claude asks me before starting the next phase.
+     Saying no pauses the plan (`autopilot: off`); `/run-plan` picks it up again.
+3. Within a phase, a Stop hook keeps the loop going. It stops if something is
    `BLOCKED:` or if nothing moved since the last nudge.
 
 When I want to cut in, I write `BLOCKED: <reason>` in `PLAN.md` and Claude stops and waits.
