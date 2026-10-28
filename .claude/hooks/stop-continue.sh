@@ -19,4 +19,4 @@ if [[ "$(jq -r '.stop_hook_active // false' <<<"$input")" == "true" && -f $state
 fi
 echo "$sig" > "$state"
 
-jq -n '{decision: "block", reason: "PLAN.md has autopilot: on and unfinished phases. Continue the run-plan loop. Never start a new phase without asking the user first (next-phase gate). If you need the user, write BLOCKED: <reason> in PLAN.md and stop."}'
+jq -n '{decision: "block", reason: "PLAN.md has autopilot: on and unfinished phases. Continue the run-plan loop with the next phase. If you need the user, write BLOCKED: <reason> in PLAN.md and stop."}'

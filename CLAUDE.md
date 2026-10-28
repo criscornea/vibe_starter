@@ -18,6 +18,21 @@
 - Use `/kickoff` for a new project and `/run-plan` to execute PLAN.md.
 - Need the user? Write `BLOCKED: <reason>` in PLAN.md and stop.
 
+## Planning and design
+
+- Planning is a conversation with the user, then a record. Not the other way
+  round. Nobody writes a design doc and then asks.
+- Order: the `planner` agent (Opus) runs in ASK mode and returns questions with
+  options and a recommendation. The main session puts them to the user, a few
+  at a time, and waits. Only when the user has decided, the planner runs in
+  WRITE mode with the list of decisions and records exactly those.
+- No agent or session invents features, numbers or "later" systems the user did
+  not ask for. Start from the conventional version of a thing; anything cleverer
+  is a question.
+- Text for the user names things by name, never by phase, milestone or item numbers.
+- If the main session is not Opus, say so before planning and ask the user to
+  switch with `/model`.
+
 ## Token rules
 
 - Run the `repo-man` skill before exploring unfamiliar code. Open only the files the map points to.

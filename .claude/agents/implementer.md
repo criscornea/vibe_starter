@@ -31,6 +31,7 @@ Do not merge into main. Do not edit other phases. Do not refactor outside the mi
 Return only:
 ```
 PHASE: <n> <done|blocked>
+BRANCH: <branch>
 COMMITS: <count>
 FILES: <count changed>
 CHECK: <BUILD OK | failing step>

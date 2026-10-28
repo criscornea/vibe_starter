@@ -47,10 +47,12 @@ flowchart LR
 2. `/run-plan`: Opus works through the plan, but it never touches code itself. For each phase:
    - Sonnet makes a `feat/pN-something` branch, does one commit per milestone, runs the
      checks, and pushes as it goes.
-   - If a phase looks risky (auth, migrations, a big diff), Claude asks me whether Opus
-     should review it. Otherwise it just merges.
-   - The branch gets squash-merged into `main`. Then Claude asks me before starting the next phase.
-     Saying no pauses the plan (`autopilot: off`); `/run-plan` picks it up again.
+   - If a phase is marked high risk (auth, migrations, payments), Claude asks me whether Opus
+     should review it. Otherwise it skips the review.
+   - Then it stops at `Status: ready` so I can test the branch. The next `/run-plan`
+     squash-merges it locally and starts the next phase. `/run-plan auto` skips the stop and
+     runs every phase.
+   - `main` is only pushed after I confirm and build-check is green.
 3. Within a phase, a Stop hook keeps the loop going. It stops if something is
    `BLOCKED:` or if nothing moved since the last nudge.
 
